@@ -1,0 +1,8 @@
+- Docker image to be used by ufs-weather-model for continuous integration
+- Contains FV3\_input\_data
+- Base image: CentOS 7
+- Folder location: /tmp/FV3\_input\_data
+- Copy the input files in a multistage build Dockerfile:
+  - FROM minsukjinoaa/FV3-input-data:develop-YYYYMMDD AS inputData
+  - FROM ...
+  - COPY --from=inputData /tmp/FV3\_input\_data &lt;destination&gt;
