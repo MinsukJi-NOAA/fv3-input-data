@@ -1,14 +1,15 @@
 - Docker image to be used by ufs-weather-model for continuous integration
-- Docker image contains FV3\_input\_data
-- How to generate the image and push to the docker hub:
+  - Base image: Alpine 3.12.0
+  - Docker image contains FV3\_input\_data
+  - Folder location inside the image: /tmp/FV3\_input\_data
+- How to download the image
+  - docker pull minsukjinoaa/fv3-input-data:develop-YYYYMMDD
+- How to generate the image and push to the docker hub
   - Place FV3\_input\_data in this directory
   - docker build --compress --squash -t fid .
-  - docker tag fid minsukjinoaa/fv3-input-data:YYYYMMDD
-  - docker push minsukjinoaa/fv3-input-data:YYYYMMDD
-- Base image: Alpine 3.12.0
-- Folder location inside the created image: /tmp/FV3\_input\_data
-- docker pull minsukjinoaa/fv3-input-data:develop-YYYYMMDD
-- Copy the input files in a multistage build Dockerfile:
+  - docker tag fid minsukjinoaa/fv3-input-data:develop-YYYYMMDD
+  - docker push minsukjinoaa/fv3-input-data:develop-YYYYMMDD
+- How to copy the input files in a multistage build Dockerfile
   - FROM minsukjinoaa/FV3-input-data:develop-YYYYMMDD AS inputData
   - FROM ...
   - COPY --from=inputData /tmp/FV3\_input\_data &lt;destination&gt;
