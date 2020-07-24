@@ -17,3 +17,5 @@
   - FROM minsukjinoaa/FV3-input-data:develop-YYYYMMDD AS inputData
   - FROM ...
   - COPY --from=inputData /tmp/FV3\_input\_data &lt;destination&gt;
+- How to create a volume named DataVolume from this image
+  - docker run -d --rm -v DataVolume:/tmp minsukjinoaa/fv3-input-data:develop-YYYYMMDD
